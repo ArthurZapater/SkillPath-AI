@@ -3,105 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillPath AI - Bússola de Carreira Preditiva</title>
+    <title>SkillPath AI - O Futuro do Trabalho</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles for specific animations -->
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #121212; color: #ffffff; }
-        .gradient-text { background: linear-gradient(to right, #a78bfa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; border: 1px solid #7c3aed; }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #ffffff; overflow-x: hidden; }
+        
+        /* Animated Gradient Text */
+        .animate-text {
+            background: linear-gradient(to right, #818cf8, #c084fc, #3b82f6, #818cf8);
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Floating Background Blobs */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        /* Card Glow Effect */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: #a78bfa;
+            box-shadow: 0 10px 40px -10px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Button Pulse */
+        .btn-glow {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            animation: pulse-blue 2s infinite;
+        }
+        @keyframes pulse-blue {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
     </style>
 </head>
-<body>
+<body class="relative">
 
-    <!-- Navbar -->
-    <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto">
-        <div class="text-2xl font-bold gradient-text">SkillPath AI</div>
-        <div class="hidden md:flex space-x-6 text-gray-300">
-            <a href="#" class="hover:text-white">Solução</a>
-            <a href="#" class="hover:text-white">Tecnologia</a>
-            <a href="#" class="hover:text-white">Benefícios</a>
+    <!-- Background Animated Elements -->
+    <div class="blob bg-purple-900 w-96 h-96 rounded-full top-0 left-0 mix-blend-multiply"></div>
+    <div class="blob bg-blue-900 w-96 h-96 rounded-full bottom-0 right-0 mix-blend-multiply animation-delay-2000"></div>
+    <div class="blob bg-indigo-900 w-80 h-80 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+        <div class="flex justify-between items-center p-4 max-w-7xl mx-auto">
+            <div class="text-2xl font-bold text-white tracking-tighter" data-aos="fade-down">
+                SkillPath <span class="text-blue-500">AI</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="#problema" class="hover:text-white transition">O Dilema</a>
+                <a href="#solucao" class="hover:text-white transition">A Solução</a>
+                <a href="#futuro" class="hover:text-white transition">Futuro</a>
+            </div>
+            <button class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white px-5 py-2 rounded-full text-sm font-bold transition transform hover:scale-105" data-aos="fade-down">
+                Agendar Demo
+            </button>
         </div>
-        <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition">Agendar Demo</button>
     </nav>
 
     <!-- Hero Section -->
-    <header class="text-center py-20 px-4">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                O Futuro do Trabalho não é amanhã. <span class="gradient-text">É agora.</span>
-            </h1>
-            <p class="text-xl text-gray-400 mb-8">
-                Transforme o medo da obsolescência em planos de carreira tangíveis com Inteligência Artificial.
-            </p>
-            <div class="bg-gray-800 inline-block px-6 py-3 rounded-lg mb-8 border border-gray-700">
-                <span class="text-purple-400 font-bold text-2xl">23%</span>
-                <span class="text-gray-300 ml-2">das profissões mudarão radicalmente até 2027.</span>
+    <header class="relative pt-32 pb-20 px-4 text-center overflow-hidden min-h-screen flex flex-col justify-center items-center">
+        <div class="max-w-5xl mx-auto z-10">
+            <div data-aos="zoom-in" class="inline-block mb-4 px-4 py-1 rounded-full bg-gray-800 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wide">
+                O Dilema de Roberto acabou
             </div>
-            <br>
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg shadow-blue-900/50 transition">
-                Conheça a SkillPath AI
-            </button>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="100">
+                O Futuro do Trabalho não é amanhã. <br>
+                <span class="animate-text">É AGORA.</span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Transforme o medo da obsolescência em planos de carreira tangíveis. A bússola de requalificação que sua empresa precisa.
+            </p>
+            
+            <!-- Counter Stat -->
+            <div class="flex justify-center items-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-card px-8 py-4 rounded-2xl flex flex-col items-center">
+                    <span class="text-5xl font-bold text-white" id="counter">0%</span>
+                    <span class="text-gray-400 text-sm mt-1">Das profissões vão mudar até 2027</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <button class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-lg text-lg font-bold btn-glow transition">
+                    Preparar Minha Equipe
+                </button>
+                <button class="px-8 py-4 rounded-lg text-lg font-semibold border border-gray-600 hover:bg-gray-800 transition">
+                    Ver Como Funciona
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Problem Section -->
-    <section class="py-16 bg-gray-900">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <img src="./Images/Captura de tela 2025-11-19 183535.png" alt="O Dilema de Roberto" class="rounded-xl shadow-2xl border border-gray-700">
+    <!-- The Problem (Roberto) -->
+    <section id="problema" class="py-24 bg-black/30 relative">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <!-- Image Side with Slide Animation -->
+            <div class="relative" data-aos="fade-right" data-aos-duration="1000">
+                <div class="absolute -inset-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur-lg opacity-30"></div>
+                <img src="https://img.freepik.com/free-vector/stress-concept-illustration_114360-243.jpg?t=st=1732050000~exp=1732053600~hmac=example" alt="Ilustração Roberto Estressado" class="relative rounded-2xl shadow-2xl border border-gray-700 grayscale hover:grayscale-0 transition duration-500 w-full object-cover">
             </div>
-            <div>
-                <h2 class="text-3xl font-bold mb-4">O Dilema de Roberto</h2>
-                <p class="text-gray-400 mb-4 text-lg">
-                    Roberto tem 10 anos de experiência, mas 80% do seu trabalho é repetitivo. Ele sabe que a IA chegou, mas não sabe para onde ir.
+            
+            <!-- Text Side with Slide Animation -->
+            <div data-aos="fade-left" data-aos-duration="1000">
+                <h2 class="text-sm text-purple-400 font-bold uppercase mb-2 tracking-widest">O Abismo da Qualificação</h2>
+                <h3 class="text-4xl font-bold mb-6">O Dilema de Roberto</h3>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                    Roberto é analista há 10 anos. <strong class="text-white">80% do seu trabalho é manual.</strong> Ele vê a IA chegando e sente medo, não oportunidade.
                 </p>
-                <div class="bg-gray-800 p-4 rounded-l-md border-l-4 border-purple-500">
-                    <p class="text-white italic">"Grandes organizações perdem talentos leais e gastam fortunas recrutando perfis inexistentes no mercado."</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start space-x-3">
+                        <span class="text-red-500 text-xl">✕</span>
+                        <span class="text-gray-400">A empresa perde talentos leais por falta de visão.</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <span class="text-red-500 text-xl">✕</span>
+                        <span class="text-gray-400">Gastos astronômicos recrutando perfis "unicórnio".</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <span class="text-red-500 text-xl">✕</span>
+                        <span class="text-gray-400">Ciclo vicioso de demissões e baixa moral.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Solution (Cards) -->
+    <section id="solucao" class="py-24 relative z-10">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h2 class="text-4xl font-bold mb-4">A Bússola SkillPath AI</h2>
+            <p class="text-gray-400">Como transformamos incerteza em plano de carreira.</p>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="0">
+                <div class="h-14 w-14 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                    🔍
+                </div>
+                <h3 class="text-2xl font-bold mb-3">Diagnóstico</h3>
+                <p class="text-gray-400">A IA mapeia skills ocultas e gaps de competência no seu time atual.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card p-8 rounded-2xl relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <!-- Highlight Effect on Center Card -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-purple-500 blur-3xl opacity-20"></div>
+                <div class="h-14 w-14 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                    🚀
+                </div>
+                <h3 class="text-2xl font-bold mb-3">Previsão</h3>
+                <p class="text-gray-400">Cruzamos dados globais para prever quais vagas sua empresa precisará em 2 anos.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                <div class="h-14 w-14 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                    🗺️
+                </div>
+                <h3 class="text-2xl font-bold mb-3">Novo Caminho</h3>
+                <p class="text-gray-400">Roberto não é demitido. Ele é guiado para uma função emergente e estratégica.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Section (The Engine) -->
+    <section class="py-20 bg-gray-900 text-center border-y border-gray-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12" data-aos="fade-up">O Motor da SkillPath</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition" data-aos="flip-left" data-aos-delay="0">
+                    <div class="text-purple-400 font-bold text-xl mb-2">NLP</div>
+                    <div class="text-xs text-gray-500">Skill Matching</div>
+                </div>
+                <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition" data-aos="flip-left" data-aos-delay="100">
+                    <div class="text-blue-400 font-bold text-xl mb-2">ML</div>
+                    <div class="text-xs text-gray-500">Obsolescence Data</div>
+                </div>
+                <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition" data-aos="flip-left" data-aos-delay="200">
+                    <div class="text-green-400 font-bold text-xl mb-2">WEF</div>
+                    <div class="text-xs text-gray-500">Global Trends</div>
+                </div>
+                <div class="p-4 border border-gray-700 rounded-lg hover:bg-gray-800 transition" data-aos="flip-left" data-aos-delay="300">
+                    <div class="text-pink-400 font-bold text-xl mb-2">Real-Time</div>
+                    <div class="text-xs text-gray-500">Labor Signals</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Cards -->
-    <section class="py-20 max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold">A Transformação de Carreira</h2>
-            <p class="text-gray-400 mt-2">Como guiamos seu time do medo à inovação</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="bg-gray-800 p-8 rounded-2xl card-hover border border-gray-700">
-                <div class="h-12 w-12 bg-blue-900 rounded-lg flex items-center justify-center mb-6 text-blue-300 text-xl font-bold">1</div>
-                <h3 class="text-xl font-bold mb-3">Diagnóstico Inteligente</h3>
-                <p class="text-gray-400">A IA mapeia detalhadamente as habilidades atuais (hard e soft skills) de cada colaborador.</p>
-            </div>
-            <!-- Card 2 -->
-            <div class="bg-gray-800 p-8 rounded-2xl card-hover border border-gray-700">
-                <div class="h-12 w-12 bg-purple-900 rounded-lg flex items-center justify-center mb-6 text-purple-300 text-xl font-bold">2</div>
-                <h3 class="text-xl font-bold mb-3">Previsão de Futuro</h3>
-                <p class="text-gray-400">Cruzamos dados internos e externos para antecipar demandas e vagas futuras da empresa.</p>
-            </div>
-            <!-- Card 3 -->
-            <div class="bg-gray-800 p-8 rounded-2xl card-hover border border-gray-700">
-                <div class="h-12 w-12 bg-green-900 rounded-lg flex items-center justify-center mb-6 text-green-300 text-xl font-bold">3</div>
-                <h3 class="text-xl font-bold mb-3">Novo Caminho</h3>
-                <p class="text-gray-400">Transição guiada com trilhas de aprendizado claras para funções emergentes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Footer -->
-    <footer class="bg-purple-900/20 py-16 text-center border-t border-purple-900/50">
-        <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-6">Promovido para o Futuro</h2>
-            <p class="text-gray-300 mb-8 text-lg">
-                Não demita. Evolua. Junte-se à SkillPath AI e garanta que sua empresa esteja preparada para os desafios de amanhã.
+    <!-- Footer / CTA -->
+    <footer id="futuro" class="py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent z-0"></div>
+        <div class="relative z-10 max-w-2xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-6" data-aos="zoom-in-up">Promovido para o Futuro</h2>
+            <p class="text-gray-300 mb-8 text-lg" data-aos="fade-up" data-aos-delay="100">
+                Invista na transformação do seu capital humano. Não deixe o Roberto para trás.
             </p>
-            <button class="bg-white text-purple-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">
-                Começar a Transformação
+            <button class="bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition shadow-xl" data-aos="fade-up" data-aos-delay="200">
+                Falar com Especialista
             </button>
+            <p class="mt-12 text-gray-600 text-sm">© 2024 SkillPath AI - Desenvolvido por alunos FIAP.</p>
         </div>
     </footer>
 
+    <!-- AOS Library Script (Scroll Animations) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 1. Initialize Scroll Animations
+        AOS.init({
+            duration: 800, // Duration of animation in ms
+            once: true,    // Whether animation should happen only once - while scrolling down
+            offset: 100    // Offset (in px) from the original trigger point
+        });
+
+        // 2. Number Counter Animation (0% to 23%)
+        const counterElement = document.getElementById('counter');
+        let hasCounted = false;
+
+        const animateValue = (obj, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + "%";
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Trigger counter when it comes into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasCounted) {
+                    animateValue(counterElement, 0, 23, 2000); // 2 seconds duration
+                    hasCounted = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(counterElement);
+    </script>
 </body>
 </html>
